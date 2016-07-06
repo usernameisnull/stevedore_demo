@@ -36,7 +36,7 @@ def encode_zip_to_string(file_path):
     """
     if not os.path.exists(file_path):
         raise Exception("%s not exists!" % file_path)
-    with open(file_path, 'r') as f:
+    with open(file_path, 'rb') as f:
         binary_out = f.read()
     return base64.b64encode(binary_out)
 
@@ -54,14 +54,17 @@ def decode_string_to_zip(s, sep, sep_to, zip_path):
     #     raise Exception("%s not exists " % zip_path)
     try:
         with open(zip_path, 'wb') as f:
-            f.write(base64.decode(s.replace(sep, sep_to)))
+            f.write(base64.b64decode(s.replace(sep, sep_to)))
     except Exception as exc_info:
-        print (str(exc_info))
+        print '*'*80
+        print ("Error when generate zip file, detail: %s" % str(exc_info))
+        print '*'*80
         return
 
 if __name__ == '__main__':
     out_str = simple_formatter(encode_zip_to_string('scheduler.zip'))
     print out_str
     decode_string_to_zip(out_str, '\n', '', 'algorithm/scheduler.zip')
+
 
 
