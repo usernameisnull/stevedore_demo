@@ -2,3 +2,4 @@ build/*
 dist/*
 sora_scheduler.egg-info/*
 *.pyc
+*.zip
