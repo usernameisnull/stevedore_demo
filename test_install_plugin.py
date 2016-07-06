@@ -1,4 +1,5 @@
 # encoding: utf-8
+# stevedore (1.15.0)
 import testtools
 import unittest
 import tempfile
